@@ -1,61 +1,66 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:wisata_mobile_6/mystatefulwidget.dart';
+import 'package:wisata_mobile_6/screens/landingpage.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  void initState() {
+    super.initState();
+    //Menunda Selama 5 Detik Sebelum berpindah ke halaman berikutnya
+    Future.delayed(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(
+          context,
+          //Fungsi untuk berpindah tampilan, bisa diterapkan di button juga,dll
+          MaterialPageRoute(builder: (context) => const LandingPage()));
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-              child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Lottie.network(
-                'https://lottie.host/956e1e4f-8c98-4206-ae82-50dd50161d69/dtw01aXDDE.json',
-                width: 350,
-                height: 350,
-              ),
-              const Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 300,
+    return Scaffold(
+      backgroundColor: const Color(0xffF0F3F5),
+      body: Center(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Lottie.network(
+              'https://lottie.host/956e1e4f-8c98-4206-ae82-50dd50161d69/dtw01aXDDE.json',
+              width: 350,
+              height: 350,
+            ),
+            const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 300,
+                ),
+                Text(
+                  'ASLABTIF',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff1b1b1b),
                   ),
-                  Text(
-                    'ASLABTIF',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff1b1b1b),
-                      fontFamily: "NunitoSansBold",
-                    ),
+                ),
+                Text(
+                  'TRAVEL',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff1b1b1b),
                   ),
-                  Text(
-                    'TRAVEL',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff1b1b1b),
-                      fontFamily: "NunitoSansBold",
-                    ),
-                  ),
-                ],
-              )
-            ],
-          )),
-        ],
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-      splashIconSize: 200,
-      splashTransition: SplashTransition.fadeTransition,
-      duration: 2000,
-      backgroundColor: Colors.white,
-      nextScreen: const Mystatefulwidget(),
     );
   }
 }
