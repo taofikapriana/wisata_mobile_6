@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wisata_mobile_6/materimodulscreens/pertemuan6.dart';
-import 'package:wisata_mobile_6/screens/splashscreen.dart';
 
 void main() {
   runApp(TravelApp());
